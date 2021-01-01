@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <QMessageBox>
 
 #include "mainwindow.h"
@@ -14,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     _bars.reset(new QCPBars(ui->GP_Main->xAxis, ui->GP_Main->yAxis));
     _bars->setName("Sort Bars");
+
+    _timer.reset(new QTimer(this));
+    connect(_timer.get(), &QTimer::timeout, this, QOverload<>::of(&MainWindow::update));
 }
 
 MainWindow::~MainWindow()
@@ -24,26 +29,39 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_PB_Play_toggled(bool checked)
 {
-    std::cout << __func__ << " " << __LINE__ << " checked=" << checked << std::endl;
-
     if (!_sort) {
         QMessageBox qmsgbox;
-        qmsgbox.setText("Create first!");
+        qmsgbox.setText("Make a new list first!");
         qmsgbox.exec();
 
         return;
     }
 
-    // draw
-    _sort->sort();
-    _sort->toString();
-    updateGraph(_sort->data());
+    if (checked && !_timer->isActive()) {
+        _timer->start(ui->SB_Interval->value());
+    }
+    if (!checked && _timer->isActive()) {
+        _timer->stop();
+    }
 }
 
 void MainWindow::on_PB_New_clicked()
 {
+    stop();
+
     _sort.reset(new SortBubble);
-    _sort->init(10);
+    _sort->init(ui->SB_Size->value());
+    updateGraph(_sort->data());
+    updateCount();
+}
+
+void MainWindow::update()
+{
+    // draw
+    if (!_sort->sort()) {
+        stop();
+    }
+    //_sort->toString();
     updateGraph(_sort->data());
 }
 
@@ -59,4 +77,20 @@ void MainWindow::updateGraph(std::vector<int> data)
     _bars->setData(keyData, valData);
     ui->GP_Main->rescaleAxes();
     ui->GP_Main->replot();
+
+    updateCount();
+}
+
+void MainWindow::updateCount()
+{
+    std::ostringstream ss;
+    ss << "Count : " << std::to_string(_sort->count());
+
+    ui->LB_Count->setText(QString::fromStdString(ss.str()));
+}
+
+void MainWindow::stop()
+{
+    _timer->stop();
+    ui->PB_Play->setChecked(false);
 }

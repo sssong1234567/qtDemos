@@ -8,7 +8,7 @@ class SortBubble : public Sort
 public:
     SortBubble();
 
-    virtual uint32_t sort();
+    virtual bool sort();
 
 protected:
     virtual void init(uint32_t dataSize);

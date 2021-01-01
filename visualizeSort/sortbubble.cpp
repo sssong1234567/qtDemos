@@ -13,16 +13,16 @@ void SortBubble::init(uint32_t dataSize)
     _q = dataSize - 1;
 }
 
-uint32_t SortBubble::sort()
+bool SortBubble::sort()
 {
     do {
         if (swap(_p, _p+1)) {
             swapped();
-            return _count;
+            return true;
         }
     } while(move());
 
-    return _count;
+    return false;
 }
 
 bool SortBubble::move()

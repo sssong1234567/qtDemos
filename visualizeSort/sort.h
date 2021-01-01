@@ -21,9 +21,10 @@ protected:
 
 public:
     virtual void init(uint32_t dataSize);
-    virtual uint32_t sort() = 0;
+    virtual bool sort() = 0;
     virtual void toString();
     std::vector<int32_t>& data() {return _data; }
+    uint32_t count() { return _count; }
 
 protected:
     virtual bool swap(uint32_t p, uint32_t q);

@@ -38,9 +38,7 @@ void Sort::initData()
         }
         _data.push_back(val);
         umap[val] = true;
-        std::cout << val << " ";
     }
-    std::cout << std::endl;
 }
 
 void Sort::init(uint32_t dataSize)
