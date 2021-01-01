@@ -1,3 +1,3 @@
 # qtDemos
 
-## [정렬 시각화 데모](./visualizeSort)
+## [정렬 알고리즘 시각화](./visualizeSort)

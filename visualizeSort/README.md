@@ -1,4 +1,6 @@
-# 정렬 시각화
+# 정렬 알고리즘 시각화
+
+![데모](./img/demo.gif)
 
 ##  QCustomPlot
 - [웹사이트](https://www.qcustomplot.com/)
