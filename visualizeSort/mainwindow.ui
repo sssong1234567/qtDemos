@@ -27,7 +27,7 @@
    <widget class="QPushButton" name="PB_Play">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>320</x>
       <y>540</y>
       <width>50</width>
       <height>50</height>
@@ -56,7 +56,7 @@
    <widget class="QSpinBox" name="SB_Size">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>140</x>
       <y>610</y>
       <width>80</width>
       <height>30</height>
@@ -75,7 +75,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
       <y>610</y>
       <width>80</width>
       <height>30</height>
@@ -88,8 +88,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>650</y>
+      <x>60</x>
+      <y>540</y>
       <width>80</width>
       <height>30</height>
      </rect>
@@ -101,8 +101,8 @@
    <widget class="QSpinBox" name="SB_Interval">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>650</y>
+      <x>140</x>
+      <y>540</y>
       <width>80</width>
       <height>30</height>
      </rect>
@@ -120,8 +120,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>650</y>
+      <x>230</x>
+      <y>540</y>
       <width>80</width>
       <height>30</height>
      </rect>
@@ -130,17 +130,63 @@
      <string>ms</string>
     </property>
    </widget>
-   <widget class="QLabel" name="LB_Count">
+   <widget class="QLabel" name="LB_CountLabel">
     <property name="geometry">
      <rect>
-      <x>879</x>
+      <x>860</x>
       <y>500</y>
-      <width>150</width>
+      <width>80</width>
       <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>Count : 0</string>
+     <string>Count :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LB_Count">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>500</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="CB_Sort">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>650</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Bubble</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Quick</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>650</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sort</string>
     </property>
    </widget>
   </widget>

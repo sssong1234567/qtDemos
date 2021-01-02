@@ -1,19 +1,19 @@
 #include <iostream>
-#include "sortbubble.h"
+#include "bubblesort.h"
 
-SortBubble::SortBubble()
+BubbleSort::BubbleSort()
     : Sort()
 {
 }
 
-void SortBubble::init(uint32_t dataSize)
+void BubbleSort::init(uint32_t dataSize)
 {
     Sort::init(dataSize);
 
     _q = dataSize - 1;
 }
 
-bool SortBubble::sort()
+bool BubbleSort::sort()
 {
     do {
         if (swap(_p, _p+1)) {
@@ -25,7 +25,7 @@ bool SortBubble::sort()
     return false;
 }
 
-bool SortBubble::move()
+bool BubbleSort::move()
 {
     if (_p < _q - 1) {
         _p++;
@@ -38,7 +38,7 @@ bool SortBubble::move()
     }
     return false;
 }
-bool SortBubble::swapped()
+bool BubbleSort::swapped()
 {
     _count++;
     return move(); // end of sort

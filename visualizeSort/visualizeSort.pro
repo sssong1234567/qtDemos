@@ -9,17 +9,19 @@ CONFIG += c++11 -j4
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bubblesort.cpp \
     qcustomplot.cpp \
     main.cpp \
     mainwindow.cpp \
-    sort.cpp \
-    sortbubble.cpp
+    quicksort.cpp \
+    sort.cpp
 
 HEADERS += \
+    bubblesort.h \
     qcustomplot.h \
     mainwindow.h \
-    sort.h \
-    sortbubble.h
+    quicksort.h \
+    sort.h
 
 FORMS += \
     mainwindow.ui
@@ -34,3 +36,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     README.md
+

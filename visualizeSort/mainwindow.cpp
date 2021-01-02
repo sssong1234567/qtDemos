@@ -6,7 +6,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "sortbubble.h"
+#include "bubblesort.h"
+#include "quicksort.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,7 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_PB_Play_toggled(bool checked)
 {
-    if (!_sort) {
+    if (checked && !_sort) {
         QMessageBox qmsgbox;
         qmsgbox.setText("Make a new list first!");
         qmsgbox.exec();
@@ -49,9 +50,18 @@ void MainWindow::on_PB_New_clicked()
 {
     stop();
 
-    _sort.reset(new SortBubble);
+    if (_sort.get() != nullptr)
+        disconnect(_sort.get());
+
+    if (ui->CB_Sort->currentText() == "Bubble")
+        _sort.reset(new BubbleSort);
+    else if (ui->CB_Sort->currentText() == "Quick")
+        _sort.reset(new QuickSort);
+
+    connect(_sort.get(), SIGNAL(swapped()), this, SLOT(updateGraph()));
+
     _sort->init(ui->SB_Size->value());
-    updateGraph(_sort->data());
+    updateGraph();
     updateCount();
 }
 
@@ -62,11 +72,12 @@ void MainWindow::update()
         stop();
     }
     //_sort->toString();
-    updateGraph(_sort->data());
+    updateGraph();
 }
 
-void MainWindow::updateGraph(std::vector<int> data)
+void MainWindow::updateGraph()
 {
+    std::vector<int>& data = _sort->data();
     QVector<double> keyData;
     QVector<double> valData(data.begin(), data.end());
 
@@ -83,10 +94,7 @@ void MainWindow::updateGraph(std::vector<int> data)
 
 void MainWindow::updateCount()
 {
-    std::ostringstream ss;
-    ss << "Count : " << std::to_string(_sort->count());
-
-    ui->LB_Count->setText(QString::fromStdString(ss.str()));
+    ui->LB_Count->setText(QString::fromStdString(std::to_string(_sort->count())));
 }
 
 void MainWindow::stop()

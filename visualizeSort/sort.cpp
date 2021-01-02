@@ -60,6 +60,8 @@ bool Sort::swap(uint32_t p, uint32_t q)
     _data[p] = _data[q];
     _data[q] = temp;
     // swapped
+    emit swapped();
+
     return true;
 }
 

@@ -3,9 +3,12 @@
 
 #include <cstdint>
 #include <vector>
+#include <QObject>
 
-class Sort
+class Sort : public QObject
 {
+    Q_OBJECT
+
 public:
     Sort();
     ~Sort() {};
@@ -27,7 +30,10 @@ public:
     uint32_t count() { return _count; }
 
 protected:
-    virtual bool swap(uint32_t p, uint32_t q);
+    bool swap(uint32_t p, uint32_t q);
+
+signals:
+    void swapped();
 };
 
 #endif // SORT_H

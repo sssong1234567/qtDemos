@@ -32,8 +32,10 @@ private:
     std::unique_ptr<QTimer> _timer;
 
     void update();
-    void updateGraph(std::vector<int> data);
     void updateCount();
     void stop();
+
+public slots:
+    void updateGraph();
 };
 #endif // MAINWINDOW_H
