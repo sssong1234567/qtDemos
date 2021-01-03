@@ -1,6 +1,10 @@
 #include <iostream>
 #include <unordered_map>
-#include <random>
+
+#if defined(USE_STDC_RANDOM)
+#include <stdlib.h>
+#include <time.h>
+#endif
 
 #include "sort.h"
 
@@ -9,8 +13,13 @@ Sort::Sort()
     , _count(0)
     , _p(0)
     , _q(0)
+#if defined(USE_STDCPP_RANDOM)
+    , _gen(std::random_device()())
+#endif
 {
-
+#if defined(USE_STDC_RANDOM)
+    srand(time(NULL));
+#endif
 }
 
 void Sort::initData()
@@ -20,19 +29,22 @@ void Sort::initData()
         return;
     }
 
-    // 시드값을 얻기 위한 생성
-    std::random_device rd;
-    // random_device 를 통해 난수 생성 엔진 초기화
-    std::mt19937 gen(rd());
+#if defined(USE_STDCPP_RANDOM)
     // 균등 분포
-    std::uniform_int_distribution<int> dis(1, _dataSize);
+    std::uniform_int_distribution<uint32_t> dis(1, _dataSize);
+#endif
 
-    std::unordered_map<int, bool> umap;
+    std::unordered_map<uint32_t, bool> umap;
+    umap.clear();
     _data.clear();
     _data.reserve(_dataSize);
     uint32_t val = 0;
     while (_data.size() < _dataSize) {
-        val = dis(gen);
+#if defined(USE_STDCPP_RANDOM)
+        val = dis(_gen);
+#elif defined(USE_STDC_RANDOM)
+        val = (rand()%_dataSize) + 1;
+#endif
         if (umap[val]) {
             continue;
         }
