@@ -30,7 +30,10 @@ bool QuickSort::sort()
 
     quickSort(item.low, item.high);
 
-    return true;
+    if (_left.size() == 0 && _right.size() == 0)
+        return false;
+    else
+        return true;
 }
 
 bool QuickSort::quickSort(int32_t low, int32_t high)
@@ -45,11 +48,20 @@ bool QuickSort::quickSort(int32_t low, int32_t high)
     for (; j < high; j++) {
         if (_data[j] < pivot) {
             swap(++i, j);
+            swapped();
         }
     }
     swap(++i, high);
+    swapped();
 
     _left.push_back(StackItem(low, i-1));
     _right.push_back(StackItem(i+1, high));
+
+    return true;
+}
+
+bool QuickSort::swapped()
+{
+    _count++;
     return true;
 }

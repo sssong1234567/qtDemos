@@ -1,6 +1,10 @@
 # 정렬 알고리즘 시각화
 
-![데모](./img/demo.gif)
+## Bubble Sort
+![버블 정렬](./img/bubblesort.gif)
+
+## Quick Sort
+![퀵 정렬](./img/quicksort.gif)
 
 ##  QCustomPlot
 - [웹사이트](https://www.qcustomplot.com/)

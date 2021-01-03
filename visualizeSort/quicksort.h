@@ -18,10 +18,12 @@ private:
     std::vector<StackItem> _left;
     std::vector<StackItem> _right;
 
+    bool swapped();
+    bool quickSort(int32_t low, int32_t high);
+
 public:
     virtual void init(uint32_t dataSize);
     virtual bool sort();
-    bool quickSort(int32_t low, int32_t high);
 };
 
 #endif // QUICKSORT_H
